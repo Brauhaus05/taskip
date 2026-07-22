@@ -8,6 +8,12 @@ localStorage; use the in-app **Reset demo data** button to restore the sample co
 
 **Live demo:** https://brauhaus05.github.io/taskip/
 
+<p align="center">
+  <a href="https://brauhaus05.github.io/taskip/">
+    <img src="docs/images/home.png" alt="Taskip home screen" width="320" />
+  </a>
+</p>
+
 ## Run
 - `npm install`
 - `npm run dev` — open the printed local URL
