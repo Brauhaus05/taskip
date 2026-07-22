@@ -1,0 +1,542 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,600;12..96,700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+  body{margin:0;background:#E9E4DA;font-family:'Plus Jakarta Sans',system-ui,sans-serif}
+  a{color:#40694E;text-decoration:none}
+  a:hover{color:#2E5039}
+  button{font-family:inherit;cursor:pointer;border:none;background:none;color:inherit}
+  input,textarea{font-family:inherit}
+  [data-scroll]::-webkit-scrollbar{width:0}
+  .jh-fade{animation:jhFade .28s ease both}
+  @keyframes jhFade{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+  .jh-toast{animation:jhToast .3s cubic-bezier(.2,.9,.3,1.2) both}
+  @keyframes jhToast{from{opacity:0;transform:translate(-50%,14px)}to{opacity:1;transform:translate(-50%,0)}}
+  .jh-pop{animation:jhPop .4s cubic-bezier(.2,.9,.3,1.4) both}
+  @keyframes jhPop{from{opacity:0;transform:scale(.6)}to{opacity:1;transform:scale(1)}}
+</style>
+</helmet>
+<div style="min-height:100vh;display:flex;align-items:center;justify-content:center;padding:32px">
+  <div style="width:390px;height:min(844px,100dvh - 64px);background:#F6F3EE;border-radius:48px;position:relative;overflow:hidden;box-shadow:0 30px 70px -20px rgba(40,34,22,.45),0 0 0 11px #16130E,0 0 0 13px #2A251C;display:flex;flex-direction:column">
+
+    <!-- status bar -->
+    <div style="height:50px;flex:none;display:flex;align-items:flex-end;justify-content:space-between;padding:0 30px 6px;font-weight:600;font-size:15px;color:#1D1B16;position:relative;z-index:5">
+      <span>9:41</span>
+      <span style="display:flex;align-items:center;gap:6px">
+        <svg width="18" height="12" viewBox="0 0 18 12" fill="#1D1B16"><rect x="0" y="7" width="3" height="5" rx="1"/><rect x="5" y="4" width="3" height="8" rx="1"/><rect x="10" y="1.5" width="3" height="10.5" rx="1"/><rect x="15" y="0" width="3" height="12" rx="1" opacity=".35"/></svg>
+        <svg width="17" height="12" viewBox="0 0 17 12" fill="none" stroke="#1D1B16" stroke-width="1.6" stroke-linecap="round"><path d="M1 4.2C3.4 2.1 5.8 1 8.5 1S13.6 2.1 16 4.2"/><path d="M3.6 6.9C5.1 5.6 6.7 5 8.5 5s3.4.6 4.9 1.9"/><path d="M6.2 9.5c.7-.6 1.5-.9 2.3-.9s1.6.3 2.3.9"/></svg>
+        <svg width="26" height="12" viewBox="0 0 26 12" fill="none"><rect x="1" y="1" width="21" height="10" rx="3" stroke="#1D1B16" stroke-width="1.2" opacity=".5"/><rect x="2.5" y="2.5" width="16" height="7" rx="1.5" fill="#1D1B16"/><rect x="23.5" y="4" width="1.6" height="4" rx=".8" fill="#1D1B16" opacity=".5"/></svg>
+      </span>
+    </div>
+
+    <!-- SCROLL AREA -->
+    <div data-scroll style="flex:1;overflow-y:auto;overflow-x:hidden;position:relative">
+
+      <!-- ============ HOME ============ -->
+      <sc-if value="{{ showHome }}" hint-placeholder-val="{{ true }}">
+      <div class="jh-fade" style="padding:6px 20px 28px">
+        <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:22px">
+          <div>
+            <div style="font-size:13px;color:#8A8474;font-weight:500">Good morning</div>
+            <div style="font-family:'Bricolage Grotesque';font-size:24px;font-weight:600;color:#1D1B16;letter-spacing:-.02em">Mara Ellison</div>
+          </div>
+          <button onClick="{{ goMessages }}" style="width:44px;height:44px;border-radius:15px;background:#fff;border:1px solid #E7E2D8;display:flex;align-items:center;justify-content:center;position:relative">
+            <svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="#1D1B16" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/><path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"/></svg>
+            <span style="position:absolute;top:9px;right:11px;width:8px;height:8px;border-radius:50%;background:#B4472F;border:2px solid #fff"></span>
+          </button>
+        </div>
+
+        <!-- property strip -->
+        <div style="display:flex;align-items:center;gap:12px;background:#fff;border:1px solid #E7E2D8;border-radius:18px;padding:10px;margin-bottom:16px">
+          <div style="width:52px;height:52px;border-radius:12px;flex:none;background:repeating-linear-gradient(135deg,#E7E2D8,#E7E2D8 6px,#EFEAE1 6px,#EFEAE1 12px);display:flex;align-items:center;justify-content:center">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#8A8474" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><path d="M9 22V12h6v10"/></svg>
+          </div>
+          <div style="flex:1;min-width:0">
+            <div style="font-weight:600;font-size:15px;color:#1D1B16">Maple Court</div>
+            <div style="font-size:13px;color:#8A8474">Unit 4B · 128 Maple Ave</div>
+          </div>
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#B7B1A2" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>
+        </div>
+
+        <!-- rent card -->
+        <sc-if value="{{ rentPaid }}" hint-placeholder-val="{{ false }}">
+          <div style="background:#40694E;border-radius:24px;padding:22px;color:#fff;margin-bottom:16px">
+            <div style="display:flex;align-items:center;gap:8px;font-size:14px;font-weight:600;opacity:.9;margin-bottom:6px">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
+              You're all paid up
+            </div>
+            <div style="font-family:'Bricolage Grotesque';font-size:30px;font-weight:600;letter-spacing:-.02em">August rent settled</div>
+            <div style="font-size:13px;opacity:.8;margin-top:4px">Next payment due Sep 1, 2026</div>
+          </div>
+        </sc-if>
+        <sc-if value="{{ rentDue }}" hint-placeholder-val="{{ true }}">
+          <div style="background:#40694E;border-radius:24px;padding:22px;color:#fff;margin-bottom:16px;position:relative;overflow:hidden">
+            <div style="position:absolute;right:-30px;top:-30px;width:130px;height:130px;border-radius:50%;background:rgba(255,255,255,.06)"></div>
+            <div style="font-size:13px;font-weight:500;opacity:.85">Rent due · Aug 1, 2026</div>
+            <div style="font-family:'Bricolage Grotesque';font-size:40px;font-weight:600;letter-spacing:-.02em;margin:2px 0 2px">$1,850</div>
+            <div style="display:flex;align-items:center;gap:6px;font-size:12.5px;opacity:.8;margin-bottom:16px">
+              <span style="width:6px;height:6px;border-radius:50%;background:#E7C87A"></span> Due in 12 days
+            </div>
+            <button onClick="{{ goPayFlow }}" style="width:100%;background:#fff;color:#26402E;font-weight:700;font-size:15px;padding:13px;border-radius:14px">Pay now</button>
+          </div>
+        </sc-if>
+
+        <!-- quick actions -->
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:22px">
+          <button onClick="{{ goPayFlow }}" style="text-align:left;background:#fff;border:1px solid #E7E2D8;border-radius:18px;padding:16px">
+            <div style="width:40px;height:40px;border-radius:12px;background:#E8EFE8;display:flex;align-items:center;justify-content:center;margin-bottom:10px"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#40694E" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="5" width="20" height="14" rx="2.5"/><path d="M2 10h20"/></svg></div>
+            <div style="font-weight:600;font-size:14px;color:#1D1B16">Pay rent</div>
+            <div style="font-size:12px;color:#8A8474">Card or bank</div>
+          </button>
+          <button onClick="{{ goNewRequest }}" style="text-align:left;background:#fff;border:1px solid #E7E2D8;border-radius:18px;padding:16px">
+            <div style="width:40px;height:40px;border-radius:12px;background:#F6ECDB;display:flex;align-items:center;justify-content:center;margin-bottom:10px"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#B07A2E" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg></div>
+            <div style="font-weight:600;font-size:14px;color:#1D1B16">New request</div>
+            <div style="font-size:12px;color:#8A8474">Report an issue</div>
+          </button>
+        </div>
+
+        <!-- recent activity -->
+        <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:12px">
+          <div style="font-family:'Bricolage Grotesque';font-size:17px;font-weight:600;color:#1D1B16">Recent activity</div>
+          <span style="font-size:13px;color:#8A8474;font-weight:500">This month</span>
+        </div>
+        <div style="background:#fff;border:1px solid #E7E2D8;border-radius:20px;overflow:hidden">
+          <sc-for list="{{ activity }}" as="a" hint-placeholder-count="3">
+            <div style="display:flex;align-items:center;gap:13px;padding:14px 16px;border-top:1px solid #F1ECE3">
+              <div style="width:38px;height:38px;border-radius:11px;flex:none;background:#F4F0E8;display:flex;align-items:center;justify-content:center;color:#6B6656">{{ a.icon }}</div>
+              <div style="flex:1;min-width:0">
+                <div style="font-weight:600;font-size:14px;color:#1D1B16">{{ a.title }}</div>
+                <div style="font-size:12px;color:#8A8474">{{ a.sub }}</div>
+              </div>
+              <div style="font-weight:600;font-size:14px;color:#1D1B16">{{ a.amount }}</div>
+            </div>
+          </sc-for>
+        </div>
+      </div>
+      </sc-if>
+
+      <!-- ============ PAYMENTS ============ -->
+      <sc-if value="{{ showPayments }}" hint-placeholder-val="{{ false }}">
+      <div class="jh-fade" style="padding:6px 20px 28px">
+        <div style="font-family:'Bricolage Grotesque';font-size:26px;font-weight:600;color:#1D1B16;letter-spacing:-.02em;margin-bottom:18px">Payments</div>
+        <div style="background:#fff;border:1px solid #E7E2D8;border-radius:24px;padding:22px;margin-bottom:16px;text-align:center">
+          <div style="font-size:13px;color:#8A8474;font-weight:500">Current balance</div>
+          <div style="font-family:'Bricolage Grotesque';font-size:44px;font-weight:600;color:#1D1B16;letter-spacing:-.03em;margin:2px 0 4px">{{ balanceLabel }}</div>
+          <div style="font-size:13px;color:#8A8474;margin-bottom:18px">{{ balanceSub }}</div>
+          <button onClick="{{ payBtnAction }}" style="width:100%;background:#40694E;color:#fff;font-weight:700;font-size:15px;padding:14px;border-radius:14px">{{ payBtnLabel }}</button>
+        </div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:24px">
+          <div style="background:#fff;border:1px solid #E7E2D8;border-radius:18px;padding:15px">
+            <div style="font-size:12px;color:#8A8474;font-weight:500">Autopay</div>
+            <div style="font-weight:600;font-size:15px;color:#40694E;margin-top:2px">On · 1st</div>
+          </div>
+          <div style="background:#fff;border:1px solid #E7E2D8;border-radius:18px;padding:15px">
+            <div style="font-size:12px;color:#8A8474;font-weight:500">Paid in 2026</div>
+            <div style="font-weight:600;font-size:15px;color:#1D1B16;margin-top:2px">$12,950</div>
+          </div>
+        </div>
+        <div style="font-family:'Bricolage Grotesque';font-size:17px;font-weight:600;color:#1D1B16;margin-bottom:12px">Payment history</div>
+        <div style="background:#fff;border:1px solid #E7E2D8;border-radius:20px;overflow:hidden">
+          <sc-for list="{{ history }}" as="h" hint-placeholder-count="3">
+            <div style="display:flex;align-items:center;gap:13px;padding:15px 16px;border-top:1px solid #F1ECE3">
+              <div style="width:38px;height:38px;border-radius:11px;flex:none;background:#E8EFE8;display:flex;align-items:center;justify-content:center"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#40694E" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></div>
+              <div style="flex:1;min-width:0">
+                <div style="font-weight:600;font-size:14px;color:#1D1B16">{{ h.title }}</div>
+                <div style="font-size:12px;color:#8A8474">{{ h.date }}</div>
+              </div>
+              <div style="text-align:right">
+                <div style="font-weight:600;font-size:14px;color:#1D1B16">{{ h.amount }}</div>
+                <div style="font-size:11px;color:#40694E;font-weight:600">{{ h.status }}</div>
+              </div>
+            </div>
+          </sc-for>
+        </div>
+      </div>
+      </sc-if>
+
+      <!-- ============ MAINTENANCE ============ -->
+      <sc-if value="{{ showMaintenance }}" hint-placeholder-val="{{ false }}">
+      <div class="jh-fade" style="padding:6px 20px 28px">
+        <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:18px">
+          <div style="font-family:'Bricolage Grotesque';font-size:26px;font-weight:600;color:#1D1B16;letter-spacing:-.02em">Maintenance</div>
+          <button onClick="{{ goNewRequest }}" style="width:42px;height:42px;border-radius:14px;background:#40694E;display:flex;align-items:center;justify-content:center"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></button>
+        </div>
+        <div style="display:flex;gap:10px;margin-bottom:18px">
+          <div style="flex:1;background:#fff;border:1px solid #E7E2D8;border-radius:16px;padding:14px"><div style="font-family:'Bricolage Grotesque';font-size:22px;font-weight:600;color:#B07A2E">1</div><div style="font-size:12px;color:#8A8474;font-weight:500">Open</div></div>
+          <div style="flex:1;background:#fff;border:1px solid #E7E2D8;border-radius:16px;padding:14px"><div style="font-family:'Bricolage Grotesque';font-size:22px;font-weight:600;color:#40694E">1</div><div style="font-size:12px;color:#8A8474;font-weight:500">Scheduled</div></div>
+          <div style="flex:1;background:#fff;border:1px solid #E7E2D8;border-radius:16px;padding:14px"><div style="font-family:'Bricolage Grotesque';font-size:22px;font-weight:600;color:#8A8474">1</div><div style="font-size:12px;color:#8A8474;font-weight:500">Resolved</div></div>
+        </div>
+        <div style="font-family:'Bricolage Grotesque';font-size:17px;font-weight:600;color:#1D1B16;margin-bottom:12px">Your requests</div>
+        <div style="display:flex;flex-direction:column;gap:12px">
+          <sc-for list="{{ requests }}" as="r" hint-placeholder-count="3">
+            <div style="background:#fff;border:1px solid #E7E2D8;border-radius:18px;padding:16px">
+              <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:12px;margin-bottom:8px">
+                <div style="font-weight:600;font-size:15px;color:#1D1B16;line-height:1.3">{{ r.title }}</div>
+                <span style="flex:none;font-size:11px;font-weight:700;padding:4px 9px;border-radius:20px;background:{{ r.sb }};color:{{ r.sc }}">{{ r.status }}</span>
+              </div>
+              <div style="display:flex;align-items:center;gap:8px;font-size:12.5px;color:#8A8474">
+                <span>{{ r.cat }}</span><span style="opacity:.4">·</span><span>{{ r.date }}</span>
+              </div>
+            </div>
+          </sc-for>
+        </div>
+      </div>
+      </sc-if>
+
+      <!-- ============ MESSAGES ============ -->
+      <sc-if value="{{ showMessages }}" hint-placeholder-val="{{ false }}">
+      <div class="jh-fade" style="padding:6px 20px 28px">
+        <div style="font-family:'Bricolage Grotesque';font-size:26px;font-weight:600;color:#1D1B16;letter-spacing:-.02em;margin-bottom:18px">Messages</div>
+        <div style="background:#fff;border:1px solid #E7E2D8;border-radius:20px;overflow:hidden">
+          <sc-for list="{{ threads }}" as="t" hint-placeholder-count="3">
+            <div style="display:flex;align-items:center;gap:13px;padding:15px 16px;border-top:1px solid #F1ECE3">
+              <div style="width:44px;height:44px;border-radius:50%;flex:none;background:{{ t.bg }};color:{{ t.fg }};display:flex;align-items:center;justify-content:center;font-weight:700;font-size:15px">{{ t.initials }}</div>
+              <div style="flex:1;min-width:0">
+                <div style="display:flex;justify-content:space-between"><div style="font-weight:600;font-size:14px;color:#1D1B16">{{ t.name }}</div><div style="font-size:11px;color:#B7B1A2">{{ t.time }}</div></div>
+                <div style="font-size:12.5px;color:#8A8474;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">{{ t.preview }}</div>
+              </div>
+            </div>
+          </sc-for>
+        </div>
+      </div>
+      </sc-if>
+
+      <!-- ============ PAY FLOW ============ -->
+      <sc-if value="{{ showPayFlow }}" hint-placeholder-val="{{ false }}">
+      <div class="jh-fade" style="padding:2px 20px 40px">
+        <div style="display:flex;align-items:center;gap:6px;margin:0 -6px 18px">
+          <button onClick="{{ goHome }}" style="width:40px;height:40px;border-radius:12px;display:flex;align-items:center;justify-content:center"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#1D1B16" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg></button>
+          <div style="font-family:'Bricolage Grotesque';font-size:20px;font-weight:600;color:#1D1B16">Pay rent</div>
+        </div>
+        <div style="text-align:center;padding:18px 0 22px">
+          <div style="font-size:13px;color:#8A8474;font-weight:500">Amount due · Aug 1</div>
+          <div style="font-family:'Bricolage Grotesque';font-size:52px;font-weight:600;color:#1D1B16;letter-spacing:-.03em">$1,850</div>
+        </div>
+        <div style="font-size:13px;font-weight:600;color:#8A8474;margin-bottom:10px">Payment method</div>
+        <div style="display:flex;flex-direction:column;gap:10px;margin-bottom:20px">
+          <sc-for list="{{ methods }}" as="m" hint-placeholder-count="2">
+            <button onClick="{{ m.onClick }}" style="display:flex;align-items:center;gap:13px;background:#fff;border:1.5px solid {{ m.border }};border-radius:16px;padding:14px 15px;text-align:left">
+              <div style="width:40px;height:40px;border-radius:11px;flex:none;background:{{ m.iconBg }};display:flex;align-items:center;justify-content:center;color:{{ m.iconFg }}">{{ m.icon }}</div>
+              <div style="flex:1"><div style="font-weight:600;font-size:14px;color:#1D1B16">{{ m.label }}</div><div style="font-size:12px;color:#8A8474">{{ m.sub }}</div></div>
+              <sc-if value="{{ m.selected }}" hint-placeholder-val="{{ false }}"><div style="width:22px;height:22px;border-radius:50%;background:#40694E;display:flex;align-items:center;justify-content:center"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></div></sc-if>
+              <sc-if value="{{ m.unselected }}" hint-placeholder-val="{{ true }}"><div style="width:22px;height:22px;border-radius:50%;border:2px solid #E0DACE"></div></sc-if>
+            </button>
+          </sc-for>
+        </div>
+        <div style="background:#fff;border:1px solid #E7E2D8;border-radius:16px;padding:15px;margin-bottom:22px">
+          <div style="display:flex;justify-content:space-between;font-size:13.5px;color:#6B6656;margin-bottom:8px"><span>Rent</span><span style="color:#1D1B16;font-weight:500">$1,850.00</span></div>
+          <div style="display:flex;justify-content:space-between;font-size:13.5px;color:#6B6656;padding-bottom:10px;border-bottom:1px solid #F1ECE3"><span>Processing fee</span><span style="color:#1D1B16;font-weight:500">$0.00</span></div>
+          <div style="display:flex;justify-content:space-between;font-size:15px;font-weight:700;color:#1D1B16;padding-top:10px"><span>Total</span><span>$1,850.00</span></div>
+        </div>
+        <button onClick="{{ confirmPay }}" style="width:100%;background:#40694E;color:#fff;font-weight:700;font-size:16px;padding:16px;border-radius:16px">Confirm payment</button>
+        <div style="text-align:center;font-size:12px;color:#B7B1A2;margin-top:12px">Secured · payment processed instantly</div>
+      </div>
+      </sc-if>
+
+      <!-- ============ PAY DONE ============ -->
+      <sc-if value="{{ showPayDone }}" hint-placeholder-val="{{ false }}">
+      <div class="jh-fade" style="padding:80px 28px;display:flex;flex-direction:column;align-items:center;text-align:center;min-height:640px;justify-content:center">
+        <div class="jh-pop" style="width:88px;height:88px;border-radius:50%;background:#40694E;display:flex;align-items:center;justify-content:center;margin-bottom:24px"><svg width="42" height="42" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></div>
+        <div style="font-family:'Bricolage Grotesque';font-size:28px;font-weight:600;color:#1D1B16;letter-spacing:-.02em">Payment sent</div>
+        <div style="font-size:14.5px;color:#8A8474;margin:8px 0 26px;line-height:1.5">$1,850 for August rent was paid<br>to Maple Court · Unit 4B</div>
+        <div style="width:100%;background:#fff;border:1px solid #E7E2D8;border-radius:18px;padding:16px;margin-bottom:26px;text-align:left">
+          <div style="display:flex;justify-content:space-between;font-size:13.5px;color:#6B6656;margin-bottom:9px"><span>Confirmation</span><span style="color:#1D1B16;font-weight:600">#JH-4471-AUG</span></div>
+          <div style="display:flex;justify-content:space-between;font-size:13.5px;color:#6B6656"><span>Method</span><span style="color:#1D1B16;font-weight:600">Visa ··4242</span></div>
+        </div>
+        <button onClick="{{ goHome }}" style="width:100%;background:#40694E;color:#fff;font-weight:700;font-size:16px;padding:16px;border-radius:16px">Back to home</button>
+      </div>
+      </sc-if>
+
+      <!-- ============ NEW REQUEST ============ -->
+      <sc-if value="{{ showNewRequest }}" hint-placeholder-val="{{ false }}">
+      <div class="jh-fade" style="padding:2px 20px 40px">
+        <div style="display:flex;align-items:center;gap:6px;margin:0 -6px 4px">
+          <button onClick="{{ mrBack }}" style="width:40px;height:40px;border-radius:12px;display:flex;align-items:center;justify-content:center"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#1D1B16" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg></button>
+          <div style="font-family:'Bricolage Grotesque';font-size:20px;font-weight:600;color:#1D1B16">New request</div>
+        </div>
+        <!-- progress -->
+        <div style="display:flex;gap:6px;padding:6px 2px 22px">
+          <div style="flex:1;height:5px;border-radius:3px;background:{{ step1Bar }}"></div>
+          <div style="flex:1;height:5px;border-radius:3px;background:{{ step2Bar }}"></div>
+          <div style="flex:1;height:5px;border-radius:3px;background:{{ step3Bar }}"></div>
+        </div>
+
+        <!-- STEP 1 -->
+        <sc-if value="{{ isStep1 }}" hint-placeholder-val="{{ true }}">
+        <div class="jh-fade">
+          <div style="font-family:'Bricolage Grotesque';font-size:22px;font-weight:600;color:#1D1B16;letter-spacing:-.02em;margin-bottom:4px">What needs fixing?</div>
+          <div style="font-size:14px;color:#8A8474;margin-bottom:20px">Pick the closest category</div>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
+            <sc-for list="{{ cats }}" as="c" hint-placeholder-count="6">
+              <button onClick="{{ c.onClick }}" style="text-align:left;background:#fff;border:1px solid #E7E2D8;border-radius:18px;padding:16px 15px">
+                <div style="width:42px;height:42px;border-radius:12px;background:{{ c.bg }};display:flex;align-items:center;justify-content:center;margin-bottom:11px"><svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="{{ c.fg }}" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="{{ c.icon }}"/></svg></div>
+                <div style="font-weight:600;font-size:14px;color:#1D1B16">{{ c.label }}</div>
+                <div style="font-size:11.5px;color:#8A8474;margin-top:1px">{{ c.desc }}</div>
+              </button>
+            </sc-for>
+          </div>
+        </div>
+        </sc-if>
+
+        <!-- STEP 2 -->
+        <sc-if value="{{ isStep2 }}" hint-placeholder-val="{{ false }}">
+        <div class="jh-fade">
+          <div style="display:inline-flex;align-items:center;gap:7px;background:#F4F0E8;border-radius:20px;padding:6px 12px;font-size:12.5px;font-weight:600;color:#6B6656;margin-bottom:16px">{{ mrCat }}</div>
+          <div style="font-family:'Bricolage Grotesque';font-size:22px;font-weight:600;color:#1D1B16;letter-spacing:-.02em;margin-bottom:16px">Tell us more</div>
+          <div style="font-size:13px;font-weight:600;color:#6B6656;margin-bottom:7px">Title</div>
+          <input value="{{ mrTitle }}" onChange="{{ setTitle }}" placeholder="e.g. Leaking faucet under sink" style="width:100%;background:#fff;border:1.5px solid #E7E2D8;border-radius:14px;padding:14px;font-size:14px;color:#1D1B16;outline:none;margin-bottom:16px">
+          <div style="font-size:13px;font-weight:600;color:#6B6656;margin-bottom:7px">Description</div>
+          <textarea value="{{ mrDesc }}" onChange="{{ setDesc }}" placeholder="What's happening? When did it start?" rows="4" style="width:100%;background:#fff;border:1.5px solid #E7E2D8;border-radius:14px;padding:14px;font-size:14px;color:#1D1B16;outline:none;resize:none;margin-bottom:18px"></textarea>
+          <div style="font-size:13px;font-weight:600;color:#6B6656;margin-bottom:9px">Priority</div>
+          <div style="display:flex;gap:9px">
+            <sc-for list="{{ priorities }}" as="p" hint-placeholder-count="3">
+              <button onClick="{{ p.onClick }}" style="flex:1;padding:11px;border-radius:13px;font-size:13.5px;font-weight:600;border:1.5px solid {{ p.border }};background:{{ p.bg }};color:{{ p.fg }}">{{ p.label }}</button>
+            </sc-for>
+          </div>
+        </div>
+        </sc-if>
+
+        <!-- STEP 3 -->
+        <sc-if value="{{ isStep3 }}" hint-placeholder-val="{{ false }}">
+        <div class="jh-fade">
+          <div style="font-family:'Bricolage Grotesque';font-size:22px;font-weight:600;color:#1D1B16;letter-spacing:-.02em;margin-bottom:16px">Photos & location</div>
+          <div style="font-size:13px;font-weight:600;color:#6B6656;margin-bottom:9px">Add photos <span style="color:#B7B1A2;font-weight:500">(optional)</span></div>
+          <div style="display:flex;gap:10px;margin-bottom:20px">
+            <div style="width:78px;height:78px;border-radius:14px;border:1.5px dashed #CFC8BA;display:flex;align-items:center;justify-content:center;background:#FBF9F5"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#A79F8E" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14.5 4h-5L7 7H4a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-3l-2.5-3z"/><circle cx="12" cy="13" r="3"/></svg></div>
+            <div style="width:78px;height:78px;border-radius:14px;background:repeating-linear-gradient(135deg,#E7E2D8,#E7E2D8 5px,#EFEAE1 5px,#EFEAE1 10px)"></div>
+            <div style="width:78px;height:78px;border-radius:14px;border:1.5px dashed #E0DACE;display:flex;align-items:center;justify-content:center;font-size:11px;color:#B7B1A2;text-align:center">add</div>
+          </div>
+          <div style="font-size:13px;font-weight:600;color:#6B6656;margin-bottom:9px">Where in the unit?</div>
+          <div style="display:flex;flex-wrap:wrap;gap:9px;margin-bottom:22px">
+            <sc-for list="{{ areas }}" as="ar" hint-placeholder-count="5">
+              <button onClick="{{ ar.onClick }}" style="padding:9px 15px;border-radius:20px;font-size:13px;font-weight:600;border:1.5px solid {{ ar.border }};background:{{ ar.bg }};color:{{ ar.fg }}">{{ ar.label }}</button>
+            </sc-for>
+          </div>
+          <div style="background:#F4F0E8;border-radius:16px;padding:15px;margin-bottom:8px">
+            <div style="font-size:12px;font-weight:600;color:#8A8474;margin-bottom:8px">Summary</div>
+            <div style="font-size:14px;color:#1D1B16;font-weight:600;margin-bottom:3px">{{ summaryTitle }}</div>
+            <div style="font-size:12.5px;color:#6B6656">{{ mrCat }} · {{ mrPriority }} priority · {{ mrArea }}</div>
+          </div>
+        </div>
+        </sc-if>
+
+        <!-- footer button -->
+        <div style="margin-top:24px">
+          <sc-if value="{{ isStep3 }}" hint-placeholder-val="{{ false }}">
+            <button onClick="{{ submitReq }}" style="width:100%;background:#40694E;color:#fff;font-weight:700;font-size:16px;padding:16px;border-radius:16px">Submit request</button>
+          </sc-if>
+          <sc-if value="{{ notStep3 }}" hint-placeholder-val="{{ false }}">
+            <sc-if value="{{ isStep2 }}" hint-placeholder-val="{{ false }}">
+              <button onClick="{{ mrNext }}" style="width:100%;background:#40694E;color:#fff;font-weight:700;font-size:16px;padding:16px;border-radius:16px">Continue</button>
+            </sc-if>
+          </sc-if>
+        </div>
+      </div>
+      </sc-if>
+
+      <!-- ============ REQUEST DONE ============ -->
+      <sc-if value="{{ showReqDone }}" hint-placeholder-val="{{ false }}">
+      <div class="jh-fade" style="padding:80px 28px;display:flex;flex-direction:column;align-items:center;text-align:center;min-height:640px;justify-content:center">
+        <div class="jh-pop" style="width:88px;height:88px;border-radius:50%;background:#40694E;display:flex;align-items:center;justify-content:center;margin-bottom:24px"><svg width="42" height="42" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></div>
+        <div style="font-family:'Bricolage Grotesque';font-size:28px;font-weight:600;color:#1D1B16;letter-spacing:-.02em">Request submitted</div>
+        <div style="font-size:14.5px;color:#8A8474;margin:8px 0 26px;line-height:1.5">Your property manager has been notified.<br>You'll get updates here and by email.</div>
+        <div style="width:100%;background:#fff;border:1px solid #E7E2D8;border-radius:18px;padding:16px;margin-bottom:26px;text-align:left">
+          <div style="display:flex;justify-content:space-between;font-size:13.5px;color:#6B6656;margin-bottom:9px"><span>Ticket</span><span style="color:#1D1B16;font-weight:600">#MR-2049</span></div>
+          <div style="display:flex;justify-content:space-between;font-size:13.5px;color:#6B6656"><span>Typical response</span><span style="color:#1D1B16;font-weight:600">Within 24 hrs</span></div>
+        </div>
+        <button onClick="{{ goMaintenance }}" style="width:100%;background:#40694E;color:#fff;font-weight:700;font-size:16px;padding:16px;border-radius:16px">View my requests</button>
+      </div>
+      </sc-if>
+
+    </div>
+
+    <!-- BOTTOM TAB BAR -->
+    <sc-if value="{{ showTabBar }}" hint-placeholder-val="{{ true }}">
+    <div style="flex:none;height:88px;background:rgba(246,243,238,.92);backdrop-filter:blur(14px);border-top:1px solid #E7E2D8;display:flex;padding:10px 12px 26px;z-index:10">
+      <button onClick="{{ goHome }}" style="flex:1;display:flex;flex-direction:column;align-items:center;gap:4px;color:{{ homeColor }}">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><path d="M9 22V12h6v10"/></svg>
+        <span style="font-size:10.5px;font-weight:600">Home</span>
+      </button>
+      <button onClick="{{ goPayments }}" style="flex:1;display:flex;flex-direction:column;align-items:center;gap:4px;color:{{ payColor }}">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="5" width="20" height="14" rx="2.5"/><path d="M2 10h20"/></svg>
+        <span style="font-size:10.5px;font-weight:600">Payments</span>
+      </button>
+      <button onClick="{{ goMaintenance }}" style="flex:1;display:flex;flex-direction:column;align-items:center;gap:4px;color:{{ maintColor }}">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>
+        <span style="font-size:10.5px;font-weight:600">Repairs</span>
+      </button>
+      <button onClick="{{ goMessages }}" style="flex:1;display:flex;flex-direction:column;align-items:center;gap:4px;color:{{ msgColor }}">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+        <span style="font-size:10.5px;font-weight:600">Inbox</span>
+      </button>
+    </div>
+    </sc-if>
+
+    <!-- toast -->
+    <sc-if value="{{ toast }}" hint-placeholder-val="{{ false }}">
+      <div class="jh-toast" style="position:absolute;bottom:104px;left:50%;background:#1D1B16;color:#fff;font-size:13.5px;font-weight:500;padding:11px 18px;border-radius:22px;z-index:20;box-shadow:0 8px 24px rgba(0,0,0,.25)">{{ toast }}</div>
+    </sc-if>
+
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:454,&quot;height&quot;:908}}">
+class Component extends DCLogic {
+  state = {
+    screen: 'home',
+    rentPaid: false,
+    payMethod: 'card',
+    mrStep: 1,
+    mrCat: '',
+    mrTitle: '',
+    mrDesc: '',
+    mrPriority: 'Medium',
+    mrArea: 'Kitchen',
+    toast: null,
+    requests: [
+      { title: 'Leaking kitchen faucet', cat: 'Plumbing', status: 'In progress', sc: '#B07A2E', sb: '#F6ECDB', date: 'Jul 14' },
+      { title: 'Hallway light flickering', cat: 'Electrical', status: 'Scheduled', sc: '#40694E', sb: '#E8EFE8', date: 'Jul 10' },
+      { title: 'AC not cooling well', cat: 'Heating & Cooling', status: 'Resolved', sc: '#8A8474', sb: '#EFEBE3', date: 'Jun 28' },
+    ],
+  };
+
+  go(screen) { this.setState({ screen }); }
+  flash(msg) { this.setState({ toast: msg }); clearTimeout(this._t); this._t = setTimeout(() => this.setState({ toast: null }), 2200); }
+
+  ic(path, w) {
+    return React.createElement('svg', { width: w || 18, height: w || 18, viewBox: '0 0 24 24', fill: 'none', stroke: 'currentColor', strokeWidth: 1.9, strokeLinecap: 'round', strokeLinejoin: 'round' }, React.createElement('path', { d: path }));
+  }
+
+  renderVals() {
+    const s = this.state;
+    const green = '#40694E', mute = '#A8A296';
+
+    const catDefs = [
+      { label: 'Plumbing', desc: 'Leaks, drains', bg: '#E4EEF2', fg: '#3E7A96', icon: 'M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z' },
+      { label: 'Electrical', desc: 'Lights, outlets', bg: '#F6ECDB', fg: '#B07A2E', icon: 'M13 2 3 14h9l-1 8 10-12h-9z' },
+      { label: 'Appliance', desc: 'Fridge, stove', bg: '#EAE7F2', fg: '#6C5FA6', icon: 'M21 8v8a2 2 0 0 1-1 1.73l-7 4a2 2 0 0 1-2 0l-7-4A2 2 0 0 1 3 16V8a2 2 0 0 1 1-1.73l7-4a2 2 0 0 1 2 0l7 4A2 2 0 0 1 21 8z' },
+      { label: 'Heating & Cooling', desc: 'AC, heat', bg: '#E8EFE8', fg: '#40694E', icon: 'M14 14.76V3.5a2.5 2.5 0 0 0-5 0v11.26a4 4 0 1 0 5 0z' },
+      { label: 'Structural', desc: 'Walls, doors', bg: '#F1ECE3', fg: '#6B6656', icon: 'm3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z' },
+      { label: 'Other', desc: 'Something else', bg: '#F6E2DC', fg: '#B4472F', icon: 'M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20zM12 8v8M8 12h8' },
+    ];
+    const cats = catDefs.map(c => ({ ...c, onClick: () => this.setState({ mrCat: c.label, mrStep: 2 }) }));
+
+    const prioDefs = ['Low', 'Medium', 'Urgent'];
+    const prioColor = { Low: '#40694E', Medium: '#B07A2E', Urgent: '#B4472F' };
+    const priorities = prioDefs.map(p => {
+      const on = s.mrPriority === p;
+      return { label: p, onClick: () => this.setState({ mrPriority: p }),
+        bg: on ? '#fff' : '#fff', border: on ? prioColor[p] : '#E7E2D8', fg: on ? prioColor[p] : '#8A8474' };
+    });
+
+    const areaDefs = ['Kitchen', 'Bathroom', 'Bedroom', 'Living room', 'Other'];
+    const areas = areaDefs.map(a => {
+      const on = s.mrArea === a;
+      return { label: a, onClick: () => this.setState({ mrArea: a }),
+        bg: on ? green : '#fff', border: on ? green : '#E7E2D8', fg: on ? '#fff' : '#6B6656' };
+    });
+
+    const methodDefs = [
+      { id: 'card', label: 'Visa ··4242', sub: 'Debit card', iconBg: '#E8EFE8', iconFg: green, icon: this.ic('M2 5h20v14H2zM2 10h20', 20) },
+      { id: 'bank', label: 'Chase checking', sub: 'Bank ··8891', iconBg: '#EAE7F2', iconFg: '#6C5FA6', icon: this.ic('M3 21h18M4 10h16M5 10 12 4l7 6M6 10v11M18 10v11M10 10v11M14 10v11', 20) },
+    ];
+    const methods = methodDefs.map(m => ({ ...m, selected: s.payMethod === m.id, unselected: s.payMethod !== m.id,
+      border: s.payMethod === m.id ? green : '#E7E2D8', onClick: () => this.setState({ payMethod: m.id }) }));
+
+    const barOn = green, barOff = '#E0DACE';
+
+    return {
+      // screen flags
+      showHome: s.screen === 'home',
+      showPayments: s.screen === 'payments',
+      showMaintenance: s.screen === 'maintenance',
+      showMessages: s.screen === 'messages',
+      showPayFlow: s.screen === 'payFlow',
+      showPayDone: s.screen === 'payDone',
+      showNewRequest: s.screen === 'newRequest',
+      showReqDone: s.screen === 'reqDone',
+      showTabBar: ['home', 'payments', 'maintenance', 'messages'].includes(s.screen),
+
+      // tab colors
+      homeColor: s.screen === 'home' ? green : mute,
+      payColor: s.screen === 'payments' ? green : mute,
+      maintColor: s.screen === 'maintenance' ? green : mute,
+      msgColor: s.screen === 'messages' ? green : mute,
+
+      // nav
+      goHome: () => this.go('home'),
+      goPayments: () => this.go('payments'),
+      goMaintenance: () => this.go('maintenance'),
+      goMessages: () => this.go('messages'),
+      goPayFlow: () => this.go('payFlow'),
+      goNewRequest: () => this.setState({ screen: 'newRequest', mrStep: 1, mrCat: '', mrTitle: '', mrDesc: '', mrPriority: 'Medium', mrArea: 'Kitchen' }),
+
+      // home
+      rentPaid: s.rentPaid,
+      rentDue: !s.rentPaid,
+      activity: [
+        { icon: this.ic('M2 5h20v14H2zM2 10h20'), title: 'July rent', sub: 'Jul 1 · Visa ··4242', amount: '$1,850' },
+        { icon: this.ic('M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z'), title: 'Faucet repair scheduled', sub: 'Jul 15 · Plumbing', amount: '' },
+        { icon: this.ic('M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z'), title: 'Message from Jordan', sub: 'Property manager', amount: '' },
+      ],
+
+      // payments
+      balanceLabel: s.rentPaid ? '$0.00' : '$1,850.00',
+      balanceSub: s.rentPaid ? 'Next due Sep 1, 2026' : 'Due Aug 1, 2026',
+      payBtnLabel: s.rentPaid ? 'View receipt' : 'Pay $1,850 now',
+      payBtnAction: s.rentPaid ? () => this.flash('Receipt #JH-4471-AUG') : () => this.go('payFlow'),
+      history: [
+        { title: 'July Rent', date: 'Jul 1, 2026', amount: '$1,850', status: 'Paid' },
+        { title: 'June Rent', date: 'Jun 1, 2026', amount: '$1,850', status: 'Paid' },
+        { title: 'May Rent', date: 'May 1, 2026', amount: '$1,850', status: 'Paid' },
+      ],
+
+      // maintenance
+      requests: s.requests,
+
+      // messages
+      threads: [
+        { initials: 'JR', name: 'Jordan Reyes', preview: 'The plumber will come Tuesday 9–11am', time: '2h', bg: '#E8EFE8', fg: '#40694E' },
+        { initials: 'MC', name: 'Maple Court', preview: 'Reminder: water shut-off Thursday', time: '1d', bg: '#F6ECDB', fg: '#B07A2E' },
+        { initials: 'SU', name: 'Support', preview: 'How was your recent repair?', time: '3d', bg: '#EAE7F2', fg: '#6C5FA6' },
+      ],
+
+      // pay flow
+      methods,
+      confirmPay: () => { this.setState({ screen: 'payDone', rentPaid: true }); },
+
+      // new request
+      cats, priorities, areas,
+      mrCat: s.mrCat, mrTitle: s.mrTitle, mrDesc: s.mrDesc, mrPriority: s.mrPriority, mrArea: s.mrArea,
+      summaryTitle: s.mrTitle || 'Untitled request',
+      isStep1: s.mrStep === 1, isStep2: s.mrStep === 2, isStep3: s.mrStep === 3, notStep3: s.mrStep !== 3,
+      step1Bar: s.mrStep >= 1 ? barOn : barOff,
+      step2Bar: s.mrStep >= 2 ? barOn : barOff,
+      step3Bar: s.mrStep >= 3 ? barOn : barOff,
+      setTitle: e => this.setState({ mrTitle: e.target.value }),
+      setDesc: e => this.setState({ mrDesc: e.target.value }),
+      mrNext: () => this.setState({ mrStep: Math.min(3, s.mrStep + 1) }),
+      mrBack: () => { if (s.mrStep > 1) this.setState({ mrStep: s.mrStep - 1 }); else this.go('maintenance'); },
+      submitReq: () => {
+        const req = { title: s.mrTitle || (s.mrCat + ' issue'), cat: s.mrCat || 'Other', status: 'Submitted', sc: '#B07A2E', sb: '#F6ECDB', date: 'Jul 20' };
+        this.setState({ requests: [req, ...s.requests], screen: 'reqDone' });
+      },
+
+      toast: s.toast,
+    };
+  }
+}
+</script>
+</body>
+</html>
