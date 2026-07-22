@@ -1,5 +1,5 @@
 import { createContext, useContext, useReducer, useCallback, useRef, useEffect } from 'react';
-import { PATHS } from '../data/seed.js';
+import { initialState, PATHS } from '../data/seed.js';
 import { C } from '../theme/tokens.js';
 import { loadState, saveState } from './persistence.js';
 
@@ -78,6 +78,8 @@ export function reducer(state, action) {
       return { ...state, toast: action.message };
     case 'clearToast':
       return { ...state, toast: null };
+    case 'reset':
+      return initialState();
     default:
       return state;
   }

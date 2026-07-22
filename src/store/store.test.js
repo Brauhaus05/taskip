@@ -48,6 +48,16 @@ describe('reducer', () => {
     expect(s1.requests.find((r) => r.id === 'r-101').status).toBe('Cancelled');
   });
 
+  it('reset restores the seeded state after changes', () => {
+    let s = initialState();
+    s = reducer(s, { type: 'payRent', method: 'Visa ··4242' });
+    s = reducer(s, { type: 'submitRequest', draft: { title: 'X', cat: 'Plumbing', priority: 'Low', area: 'Kitchen', desc: '', photos: [] } });
+    const r = reducer(s, { type: 'reset' });
+    expect(r.rent.paid).toBe(false);
+    expect(r.requests.length).toBe(initialState().requests.length);
+    expect(r.payments.history.length).toBe(initialState().payments.history.length);
+  });
+
   it('setToast / clearToast set and clear the message', () => {
     const s0 = initialState();
     expect(reducer(s0, { type: 'setToast', message: 'Hi' }).toast).toBe('Hi');
