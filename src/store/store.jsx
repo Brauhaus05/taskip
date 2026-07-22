@@ -1,6 +1,7 @@
-import { createContext, useContext, useReducer, useCallback, useRef } from 'react';
-import { initialState, PATHS } from '../data/seed.js';
+import { createContext, useContext, useReducer, useCallback, useRef, useEffect } from 'react';
+import { PATHS } from '../data/seed.js';
 import { C } from '../theme/tokens.js';
+import { loadState, saveState } from './persistence.js';
 
 let seq = 4470;
 function nextConf() {
@@ -85,8 +86,12 @@ export function reducer(state, action) {
 const StoreContext = createContext(null);
 
 export function StoreProvider({ children }) {
-  const [state, dispatch] = useReducer(reducer, undefined, initialState);
+  const [state, dispatch] = useReducer(reducer, undefined, loadState);
   const toastTimer = useRef(null);
+
+  useEffect(() => {
+    saveState(state);
+  }, [state]);
 
   const flash = useCallback((message) => {
     dispatch({ type: 'setToast', message });
