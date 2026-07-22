@@ -12,7 +12,7 @@ export default function Payments() {
   const balanceSub = rent.paid ? `Next due ${rent.nextDue}` : `Due ${rent.dueDate}`;
   const payLabel = rent.paid ? 'View receipt' : 'Pay $1,850 now';
   const onPay = rent.paid
-    ? () => flash(`Receipt ${rent.confirmation}`)
+    ? () => nav('/receipt/p-2026-08')
     : () => nav('/pay');
 
   const toggleAutopay = () => {

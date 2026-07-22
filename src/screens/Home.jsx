@@ -1,7 +1,7 @@
 import { useNavigate } from 'react-router-dom';
 import { useStore } from '../store/store.jsx';
 import Icon from '../components/Icon.jsx';
-import { C, FONT, heading, screenPad, card } from '../theme/tokens.js';
+import { C, FONT, heading, card } from '../theme/tokens.js';
 
 export default function Home() {
   const { state } = useStore();

@@ -33,7 +33,7 @@ export default function Receipt() {
         <Row label="Method" value={p.method} />
         <Row label="Property" value={`${state.property.name} · ${state.property.unit}`} />
         <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: 13.5, color: C.sub }}>
-          <span>Confirmation</span><span style={{ color: C.ink, fontWeight: 600 }}>{state.rent.confirmation}</span>
+          <span>Confirmation</span><span style={{ color: C.ink, fontWeight: 600 }}>{p.confirmation}</span>
         </div>
       </div>
       <div style={{ marginTop: 22 }}>

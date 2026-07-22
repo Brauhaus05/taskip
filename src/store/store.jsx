@@ -11,6 +11,7 @@ function nextConf() {
 export function reducer(state, action) {
   switch (action.type) {
     case 'payRent': {
+      const confirmation = nextConf();
       const payment = {
         id: `p-2026-08`,
         title: 'August Rent',
@@ -18,8 +19,8 @@ export function reducer(state, action) {
         amount: state.rent.amountLabel,
         status: 'Paid',
         method: action.method,
+        confirmation,
       };
-      const confirmation = nextConf();
       const activityEntry = {
         id: `a-${payment.id}`,
         icon: PATHS.card,

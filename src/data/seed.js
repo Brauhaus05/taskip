@@ -45,9 +45,9 @@ export function initialState() {
     payments: {
       paidYTD: '$12,950',
       history: [
-        { id: 'p-2026-07', title: 'July Rent', date: 'Jul 1, 2026', amount: '$1,850', status: 'Paid', method: 'Visa ··4242' },
-        { id: 'p-2026-06', title: 'June Rent', date: 'Jun 1, 2026', amount: '$1,850', status: 'Paid', method: 'Visa ··4242' },
-        { id: 'p-2026-05', title: 'May Rent', date: 'May 1, 2026', amount: '$1,850', status: 'Paid', method: 'Visa ··4242' },
+        { id: 'p-2026-07', title: 'July Rent', date: 'Jul 1, 2026', amount: '$1,850', status: 'Paid', method: 'Visa ··4242', confirmation: '#JH-4470-JUL' },
+        { id: 'p-2026-06', title: 'June Rent', date: 'Jun 1, 2026', amount: '$1,850', status: 'Paid', method: 'Visa ··4242', confirmation: '#JH-4469-JUN' },
+        { id: 'p-2026-05', title: 'May Rent', date: 'May 1, 2026', amount: '$1,850', status: 'Paid', method: 'Visa ··4242', confirmation: '#JH-4468-MAY' },
       ],
     },
     requests: [
